@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- {{text}} -->
+      <!-- <a v-if="show" :href="url">Google</a>
+      <a v-else-if="show1" :href="url">Mail.ru</a>
+      <a v-else="show" :href="url">Yandex</a> -->
+      <!-- <ul>
+        <li v-for="(user,index) in users">{{index}} {{user}}</li>
+      </ul>
+      <input type="text" @input="log('Write:' ,$event)" /> -->
+      <!-- <p>Моё имя <input v-model="name" /> и мне <input v-model="age" /> лет.</p>
+
+      <button @click="persist">Сохранить</button>
+
+      <div>Список: <textarea v-model="table"></textarea></div> -->
+      <input placeholder="Username" type="text" v-model="name" />
+      <input placeholder="Age" type="text" v-model="age" />
+      <button @click="persist">CLICK</button>
+      <ul>
+        <li v-for="(user,index) in users">{{index}} {{user}}</li>
+      </ul>
+    </div>
+
+    <script>
+      Vue.createApp({
+        data: () => {
+          return {
+            name: "",
+            age: 0,
+            // table: [
+            //   {
+            //     name: "",
+            //     // age: 0,
+            //   },
+            // ],
+            // text: "Its works",
+            // url: "https://www.google.kz",
+            // show: true,
+            // show1: true,
+            users: [],
+            table: {
+              "": "",
+            },
+          };
+        },
+        // mounted() {
+        //   setTimeout(() => {
+        //     this.show = false;
+        //     this.url = "https://www.yandex.kz";
+        //   }, 1000);
+        // },
+        mounted() {
+          if (localStorage.name) {
+            this.name = localStorage.name;
+            // this.table = localStorage.name;
+          }
+          if (localStorage.age) {
+            this.age = localStorage.age;
+            //   this.table = localStorage.age;
+          }
+        },
+        methods: {
+          //   persist() {
+          //     // localStorage.name = this.name;
+          //     // localStorage.age = this.age;
+          //   },
+          persist() {
+            // this.name = event.target.value;
+            // console.log("NAME", this.name);
+            // localStorage.setItem("name", event.target.value);
+            localStorage.name = this.name;
+            localStorage.age = this.age;
+            console.log("NAME", localStorage.name);
+            console.log("AGE", localStorage.age);
+            console.log(localStorage);
+            this.users.push(localStorage.name);
+            this.users.push(localStorage.age);
+            console.log("USER", this.users);
+            this.table.localStorage.name = this.table.localStorage.age;
+            console.log("table", this.table);
+          },
+        },
+        // methods: {
+        //   log(text, ev) {
+        //     console.log(text + ev.target.value);
+        //     console.log(text + ev.data);
+        //   },
+        // },
+      }).mount("#root");
+    </script>
+  </body>
+</html>

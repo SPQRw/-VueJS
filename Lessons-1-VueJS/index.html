@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+      #stopper {
+        background-color: purple;
+        color: white;
+      }
+      .change {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <span>Counter: {{counter}}</span> <br />
+      <button id="stopper">{{counter}}</button> <br />
+      <button id="random">{{random}}</button>
+
+      <form action="">
+        <span>name : {{name}}</span> <br />
+        <span>age : {{age}}</span>
+      </form>
+      <input type="text" id="name" /> <br />
+      <input type="number" />
+    </div>
+    <script>
+      Vue.createApp({
+        data: () => {
+          return {
+            counter: 0,
+            stopped: false,
+            random: 0,
+            name: "",
+            age: 0,
+          };
+        },
+        mounted() {
+          //   setInterval(() => {
+          //     if (this.stopped) {
+          //       this.counter++;
+          //     }
+          //   }, 1000);
+
+          document.getElementById("stopper").onclick = () => {
+            this.counter++;
+            document.getElementById("stopper").classList.add("change");
+          };
+          document.getElementById("random").onclick = () => {
+            this.random = Math.floor(Math.random() * 1000);
+          };
+          document.getElementById("name").oninput = (e) => {
+            this.name = e.target.value;
+          };
+        },
+      }).mount("#root");
+    </script>
+  </body>
+</html>

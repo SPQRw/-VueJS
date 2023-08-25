@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div id="root"> -->
+    <!-- <user-card>{{var1}}</user-card>
+      <global-text text="salamaleikum"></global-text>-->
+    <!-- <first-list @something-happened="Eye"></first-list> -->
+    <!-- </div> -->
+    <div id="app">
+      <task-list :tasks="tasks"></task-list>
+    </div>
+    <template id="task-list">
+      <section class="tasks">
+        <div class="tasks__new input-group">
+          <input
+            type="text"
+            placeholder="Название задачи"
+            class="input-group-field"
+            v-model="newTask"
+            @keyup.enter="addTask"
+          />
+          <span class="input-group-button">
+            <button class="button" @click="addTask">
+              <i class="fa fa-plus"></i> Добавить
+            </button>
+          </span>
+        </div>
+        <ul class="tasks__list no-bullet">
+          <task-item
+            v-for="(task, index) in tasks"
+            @remove="removeTask(index)"
+            @complete="completeTask(task)"
+            :task="task"
+            :key="task.id"
+          ></task-item>
+        </ul>
+      </section>
+    </template>
+    <template id="task-item">
+      <li class="tasks__item">
+        <button :class="className" @click.self="$emit('complete')">
+          {{ task.title }}
+        </button>
+        <button
+          class="tasks__item__remove button alert pull-right"
+          @click="$emit('remove')"
+        >
+          <i class="fa fa-times"></i>
+        </button>
+      </li>
+    </template>
+    <script src="script.js"></script>
+  </body>
+</html>
