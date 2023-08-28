@@ -1,19 +1,15 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <CreatePost>
-    <button>Click</button>
-  </CreatePost>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-import CreatePost from './components/CreatePost.vue'
-// import MyComp from './components/MyComp.vue'
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    CreatePost
+    HelloWorld
   }
 }
 </script>

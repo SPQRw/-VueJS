@@ -1,19 +1,23 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  <CreatePost>
-    <button>Click</button>
-  </CreatePost>
+<CreatePost></CreatePost>
 </template>
 
 <script>
 import CreatePost from './components/CreatePost.vue'
-// import MyComp from './components/MyComp.vue'
+// import CreateComments from './components/CreateComments.vue'
 
 export default {
   name: 'App',
   components: {
     CreatePost
+  },
+  data () {
+    return {
+      posts: [],
+    }
+  },
+  methods: {
+    
   }
 }
 </script>
