@@ -1,7 +1,7 @@
 <template>
   <div>
     <post-app
-      :post="post"
+      :content="content"
       :comments="comments"
       @add-comment="addComment"
     ></post-app>
@@ -28,10 +28,10 @@ export default {
     };
   },
   methods: {
-    addComment() {
+    addComment(content) {
       console.log(this.content);
       // Добавить новый комментарий в массив комментариев
-      this.comments.push("comment" + " " + this.content);
+      this.comments.push("comment" + " " + content);
       console.log(this.comments);
 
       // Обновить количество комментариев в записи

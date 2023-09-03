@@ -2,7 +2,9 @@
   <div>
     <h3>Комментарии</h3>
     <ul>
-      <li v-for="comment in comments" :key="comment">{{ comment }}</li>
+      <li v-for="(comment, index) in comments" :key="index" :content="content">
+        {{ comment }}
+      </li>
     </ul>
   </div>
 </template>
