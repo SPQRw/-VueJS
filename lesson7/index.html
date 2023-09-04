@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input
+        type="text"
+        id="input"
+        v-model.lazy="name"
+        v-new-dir-array.random="item"
+      />
+      <br />
+      <div>
+        {{ name }}
+        <button v-new-dir-array></button>
+        <ul>
+          <li v-for="item in items" :key="item">{{ item }}</li>
+        </ul>
+
+        <ul v-new-dir-array.random="item">
+          <li v-for="item in items" :key="item">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      let va = Vue.createApp({
+        data: () => {
+          return {
+            name: "",
+            items: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
+          };
+        },
+        created() {
+          console.log(this.items);
+          console.log("created");
+        },
+        mounted() {
+          console.log("mounted");
+        },
+      });
+
+      // va.directive("new-directive", {
+      //   updated(el, binding) {
+      //     if (
+      //       binding.instance.name == "Sunday" ||
+      //       binding.instance.name == "Saturday"
+      //     ) {
+      //       document.getElementById("input").style.display = "none";
+      //       console.log(binding.instance.name);
+      //     }
+      //   },
+      // });
+      // let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+      // va.directive("new-directive-change-color", {
+      //   updated(el, binding) {
+      //     document.getElementById("input").style.backgroundColor =
+      //       "#" + randomColor;
+      //     console.log(binding.instance.name);
+      //   },
+      // });
+      va.directive("new-dir-array", {
+        updated(el, binding) {
+          // let items = binding.value;
+          console.log(this.items);
+          //   if (binding.modifiers.reverse) {
+          //     this.items = this.items.reverse();
+          //   } else if (binding.modifiers.random) {
+          //     this.items = this.items.sort(() => Math.random() - 0.5);
+          //   }
+          //   items.forEach((item) => {
+          //     const li = document.createElement("li");
+          //     li.textContent = item;
+          //     el.appendChild(li);
+          //   });
+        },
+      });
+
+      va.mount("#app");
+    </script>
+  </body>
+</html>
