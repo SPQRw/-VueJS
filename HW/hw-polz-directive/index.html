@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <img
+        v-image-rotator="{ images: imageUrls, interval: 3000 }"
+        alt="Rotating Image"
+      />
+    </div>
+    <script>
+      let va = Vue.createApp({
+        data: () => {
+          return {
+            imageUrls: ["jz.jpeg", "panda.jpeg", "minony.jpeg"],
+          };
+        },
+      });
+      va.directive("image-rotator", {
+        bind(el, binding) {
+          const { images, interval } = binding.value;
+
+          let currentIndex = 0;
+
+          function rotateImage() {
+            if (images.length === 0) return;
+
+            el.src = images[currentIndex];
+            currentIndex = (currentIndex + 1) % images.length;
+
+            setTimeout(rotateImage, interval);
+          }
+          rotateImage();
+        },
+      });
+
+      va.mount("#app");
+    </script>
+  </body>
+</html>

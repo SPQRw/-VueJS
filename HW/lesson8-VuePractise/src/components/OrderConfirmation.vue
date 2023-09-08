@@ -14,7 +14,7 @@
       <li v-for="item in title" :key="item">
         {{ item.id }} <br>
         {{ item.name }} <br>
-        {{ item.price }}
+        {{ item.price + 25000}}
       </li>
     </ul>
   </div>
